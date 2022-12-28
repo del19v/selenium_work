@@ -3,6 +3,7 @@ import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -81,7 +82,7 @@ public class FirstTest {
 
     //TEST DATA MOB
     String MOB_URL="https://next.privat24.ua/mobile";
-    String amountExample = "1";
+    String amountExample = "1 UAH";
     By phoneNumber = By.xpath(".//input[@data-qa-node='phone-number']");
 
     @Test
@@ -89,7 +90,8 @@ public class FirstTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(MOB_URL);
         driver.findElement(phoneNumber).sendKeys("502768980");
-        driver.findElement(By.xpath(".//input[@data-qa-value='120']")).clear();
+        driver.findElement(By.xpath(".//input[@data-qa-value='120']"))
+                .sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
         driver.findElement(amount).sendKeys("1");
         driver.findElement(cardNumberFrom).sendKeys(cardNumberFromExample);
         driver.findElement(expDate).sendKeys("0725");
